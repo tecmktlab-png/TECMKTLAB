@@ -166,7 +166,7 @@
         about: { title: "About", body: "I'm Thomas. I study Software Development and Digital Marketing. I publish module summaries, open-source projects, and marketing case studies. Goal: learn in public, build a portfolio, and attract recruiters." },
         latest: "Latest posts",
         series: "Series & Tracks",
-        contact: { title: "Contact", body: "Want to talk about roles oooooooo, freelance or projects? Send an email: <a href=\"mailto:thomas@example.com\">thomas@example.com</a> · LinkedIn: <a href=\"#\" target=\"_blank\" rel=\"noopener\">profile</a>" },
+        contact: { title: "Contact", body: "Want to talk about roles, freelance or projects? Send an email: <a href=\"mailto:thomas@example.com\">thomas@example.com</a> · LinkedIn: <a href=\"#\" target=\"_blank\" rel=\"noopener\">profile</a>" },
         footLang: "Portuguese & English",
         read: "Read post",
         minutes: "min",
@@ -174,33 +174,33 @@
       }
     };
 
-    // ====== Conteúdo de exemplo (você vai substituir) ======
+    // ====== Posts ======
     // Cada post tem versões PT/EN (title, excerpt, content)
     const posts = [
       {
         id: 'ads-hello-world-cli', date: '2025-11-02', min: 6, tags: ['ADS','Back‑end'], cat: 'ads',
-        pt: { title: 'Projeto CLI em PHP: do zero ao CRUD', excerpt: 'Um guia prático para criar um CLI em PHP puro, organizar módulos e registrar logs.',
+        pt: { title: 'Pensar como programador: lógica aplicada na prática', excerpt: 'Como resolvo problemas reais com o raciocínio de Programação de Soluções Computacionais.',
           content: `\n<p>Este tutorial mostra como estruturar um projeto CLI em PHP sem frameworks, com organização modular, autoloader simples e um CRUD básico em arquivo JSON. Inclui ainda um logger padronizado.</p>\n<ol>\n<li>Estrutura de pastas</li>\n<li>Autoload e helpers</li>\n<li>Comandos (create/list/update/delete)</li>\n<li>Boas práticas e próximos passos</li>\n</ol>` },
-        en: { title: 'PHP CLI Project: from zero to CRUD', excerpt: 'A practical guide to build a pure-PHP CLI, organize modules, and log actions.',
+        en: { title: 'Thinking Like a Programmer: Logic in Action', excerpt: 'How I solve real problems using the reasoning from Computational Solutions Programming.',
           content: `\n<p>This tutorial shows how to structure a CLI project in plain PHP, with modules, a tiny autoloader, and a JSON-file CRUD. Includes a standardized logger.</p>\n<ol>\n<li>Folder layout</li>\n<li>Autoload & helpers</li>\n<li>Commands (create/list/update/delete)</li>\n<li>Best practices & next steps</li>\n</ol>` }
       },
-      {
+      /*{
         id: 'mkt-seo-notion-to-website', date: '2025-11-01', min: 5, tags: ['Marketing','SEO'], cat: 'mkt',
         pt: { title: 'SEO prático: do Notion ao site com sitemap', excerpt: 'Como transformar notas em artigos otimizados, com título H1, meta, URL e schema.',
           content: `<p>Transforme anotações soltas em artigos consistentes. Passos: definir palavra-chave, criar H1 claro, escrever meta description, estruturar H2/H3 e gerar sitemap.xml.</p>` },
         en: { title: 'Practical SEO: Notion to website with sitemap', excerpt: 'Turn notes into optimized articles: H1, meta, URL, and schema.',
           content: `<p>Turn scattered notes into consistent articles. Steps: pick a focus keyword, craft a clear H1, write a meta description, structure H2/H3, and generate sitemap.xml.</p>` }
-      },
-      {
+      }*/,
+      /*{
         id: 'career-portfolio-blueprint', date: '2025-10-28', min: 4, tags: ['Carreira','Portfolio'], cat: 'career',
         pt: { title: 'Blueprint de portfólio: ADS + Marketing', excerpt: 'Os 6 blocos essenciais: Sobre, Projetos, Estudos de Caso, Blog, CV e Contato.',
           content: `<p>Portfólio enxuto e eficaz para recrutadores: </p><ul><li>Sobre com proposta de valor</li><li>3 projetos de ADS</li><li>2 estudos de caso de Marketing</li><li>Blog com 1–2 posts/semana</li><li>CV PDF</li><li>Contato claro</li></ul>` },
         en: { title: 'Portfolio blueprint: Dev + Marketing', excerpt: 'The 6 essential blocks: About, Projects, Case Studies, Blog, CV, Contact.',
           content: `<p>Lean, recruiter‑friendly portfolio:</p><ul><li>About with value proposition</li><li>3 Dev projects</li><li>2 Marketing case studies</li><li>Blog (1–2 posts/week)</li><li>CV PDF</li><li>Clear Contact</li></ul>` }
-      }
+      }*/
     ];
 
-    const series = [
+    /*const series = [
       {
         id: 'ads-foundations',
         color: '#2a415a',
@@ -222,7 +222,7 @@
         pt: { title: 'Carreira & Portfólio', desc: 'Projetos, estudos de caso, CV e entrevistas.' },
         en: { title: 'Career & Portfolio', desc: 'Projects, case studies, CV and interviews.' }
       }
-    ];
+    ]; */
 
     // ====== Helpers ======
     const qs = (sel) => document.querySelector(sel);
