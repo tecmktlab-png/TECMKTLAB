@@ -11,6 +11,11 @@
   <meta property="og:type" content="website" />
   <meta property="og:image" content="logo-icon.png" />
   <meta name="theme-color" content="#0b0b0f" />
+    <link rel="icon" type="image/png" href="logo-icon.png" />
+  <link rel="apple-touch-icon" href="logo-icon.png" />
+  <link rel="icon" type="image/png" sizes="32x32" href="logo-icon.png" />
+  <link rel="icon" type="image/png" sizes="16x16" href="logo-icon.png" />
+
   <style>
     :root{
       --bg:#0b0b0f; --card:#12121a; --muted:#a0a0b3; --text:#e8e8f0; --brand:#86e7ff; --accent:#ff8ccf; --ring: rgba(134,231,255,.35);
@@ -25,16 +30,18 @@
     .nav{display:flex; align-items:center; justify-content:space-between; gap:12px}
     .logo{display:flex; align-items:center; gap:10px}
     .mark {
-      width: 32px;
-      height: 32px;
-      border-radius: 8px;
-      display: inline-block;
-      object-fit: contain;
-      vertical-align: middle;
-      box-shadow: 0 0 8px var(--ring);
-    }
+    width: 40px;
+    height: 40px;
+    border-radius: 10px;
+    display: inline-block;
+    object-fit: cover; /* preenche todo o quadrado */
+    vertical-align: middle;
+    box-shadow: 0 0 10px var(--ring);
+    background-color: transparent;
+  }
+
     .mark {
-  filter: drop-shadow(0 0 6px rgba(134, 231, 255, 0.6));
+  filter: drop-shadow(0 0 8px rgba(134, 231, 255, 0.8));
 }
     .title{font-weight:700; letter-spacing:.3px}
     .nav-right{display:flex; align-items:center; gap:8px}
@@ -100,7 +107,7 @@
     }
     /* imagem líder no topo do modal, com texto ao lado */
 .lead-img{
-  float: left;
+  float: right;
   width: 32%;
   max-width: 160px;   /* controla “não muito grande” */
   min-width: 120px;
