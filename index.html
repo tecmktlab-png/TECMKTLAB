@@ -1,0 +1,327 @@
+<!doctype html>
+<html lang="pt">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Thomas • Tech & Marketing Lab</title>
+  <meta name="description" content="Blog bilíngue de ADS (Análise e Desenvolvimento de Sistemas) + Marketing Digital. Estudos, projetos, portfólio e artigos práticos." />
+  <meta name="author" content="Thomas Carvalho" />
+  <meta property="og:title" content="Thomas • Tech & Marketing Lab" />
+  <meta property="og:description" content="Blog bilíngue de ADS + Marketing Digital com projetos, estudos e carreira." />
+  <meta property="og:type" content="website" />
+  <meta property="og:image" content="" />
+  <meta name="theme-color" content="#0b0b0f" />
+  <style>
+    :root{
+      --bg:#0b0b0f; --card:#12121a; --muted:#a0a0b3; --text:#e8e8f0; --brand:#86e7ff; --accent:#ff8ccf; --ring: rgba(134,231,255,.35);
+    }
+    *{box-sizing:border-box}
+    html,body{height:100%}
+    body{margin:0; font-family: ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, Arial, Noto Sans, "Apple Color Emoji","Segoe UI Emoji"; background:radial-gradient(1200px 800px at 80% -10%, #1a1a27 0%, var(--bg) 60%), var(--bg); color:var(--text)}
+    a{color:var(--brand); text-decoration:none}
+    a:hover{text-decoration:underline}
+    .container{max-width:1100px; margin:0 auto; padding:24px}
+    header{position:sticky; top:0; backdrop-filter: blur(10px); background: rgba(11,11,15,.6); border-bottom:1px solid #1f1f2b; z-index:50}
+    .nav{display:flex; align-items:center; justify-content:space-between; gap:12px}
+    .logo{display:flex; align-items:center; gap:10px}
+    .mark{width:28px; height:28px; border-radius:10px; background: conic-gradient(from 180deg, var(--brand), var(--accent), #9cff8a, var(--brand)); box-shadow:0 0 0 4px var(--ring)}
+    .title{font-weight:700; letter-spacing:.3px}
+    .nav-right{display:flex; align-items:center; gap:8px}
+    .pill{display:inline-flex; align-items:center; gap:8px; padding:8px 12px; background:#161622; border:1px solid #222236; border-radius:999px; color:var(--text)}
+    .lang button{background:transparent; border:0; color:var(--muted); cursor:pointer; font-weight:600}
+    .lang button.active{color:var(--text)}
+
+    .hero{display:grid; grid-template-columns: 1.2fr .8fr; gap:28px; padding:28px 0}
+    .hero-card{background:linear-gradient(180deg,#151522,#0f0f17); border:1px solid #222236; border-radius:18px; padding:24px; box-shadow:0 10px 30px rgba(0,0,0,.25)}
+    .hero h1{font-size:32px; line-height:1.2; margin:0 0 10px}
+    .muted{color:var(--muted)}
+    .cta{display:flex; gap:12px; margin-top:16px}
+    .button{padding:10px 14px; border-radius:12px; border:1px solid #2a2a3e; background:#181828; color:var(--text); cursor:pointer; font-weight:600}
+    .button.primary{background:linear-gradient(90deg, #1e2b3a, #1a1930); border-color:#2a3144}
+    .button:hover{filter:brightness(1.08)}
+
+    .grid{display:grid; grid-template-columns: repeat(3, 1fr); gap:18px}
+    .card{background:linear-gradient(180deg,#12121a,#0f0f17); border:1px solid #212133; border-radius:16px; padding:18px; display:flex; flex-direction:column; gap:10px}
+    .badge{display:inline-flex; padding:6px 10px; border-radius:999px; font-size:12px; border:1px solid #2a2a3e; color:var(--muted)}
+    .chips{display:flex; gap:8px; flex-wrap:wrap}
+    .card h3{margin:2px 0 4px; font-size:18px}
+    .card p{margin:0; color:var(--muted)}
+    .card .meta{display:flex; gap:12px; align-items:center; color:var(--muted); font-size:12px}
+    .card .read{margin-top:auto; align-self:flex-start}
+
+    .section{margin-top:28px}
+    .section h2{font-size:20px; margin:0 0 12px}
+
+    .footer{margin-top:40px; padding:18px 0; border-top:1px solid #1f1f2b; color:var(--muted); font-size:14px}
+
+    .modal{position:fixed; inset:0; display:none; align-items:center; justify-content:center; background:rgba(5,5,8,.7)}
+    .modal.open{display:flex}
+    .modal-card{max-width:900px; width:92%; background:#0f0f17; border:1px solid #222236; border-radius:16px; padding:22px; max-height:80vh; overflow:auto}
+    .modal h3{margin-top:0}
+
+    .kbar{margin-top:10px; display:flex; gap:10px; flex-wrap:wrap}
+    .kbar .tag{font-size:12px; padding:4px 8px; border:1px dashed #2b2b3f; color:var(--muted); border-radius:999px}
+
+    @media (max-width: 920px){
+      .hero{grid-template-columns:1fr}
+      .grid{grid-template-columns:1fr}
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <div class="container nav">
+      <div class="logo">
+        <div class="mark" aria-hidden="true"></div>
+        <div class="title">Tech & Marketing Lab</div>
+        <span class="badge" id="roleBadge">ADS + Marketing</span>
+      </div>
+      <div class="nav-right">
+        <div class="pill lang" role="group" aria-label="language switcher">
+          <button id="btnPT" class="active">PT</button>
+          <span class="muted">·</span>
+          <button id="btnEN">EN</button>
+        </div>
+        <a class="pill" href="#contact">Contato</a>
+      </div>
+    </div>
+  </header>
+
+  <main class="container">
+    <section class="hero">
+      <div class="hero-card">
+        <h1 id="heroTitle">Aprendizado em público: do código ao crescimento</h1>
+        <p class="muted" id="heroSubtitle">Projetos reais, artigos curtos e um portfólio que conecta ADS e Marketing Digital.</p>
+        <div class="cta">
+          <button class="button primary" id="btnViewLatest">Ver últimos artigos</button>
+          <button class="button" id="btnAbout">Sobre o autor</button>
+        </div>
+        <div class="kbar" id="kbar">
+          <span class="tag">#ADS</span>
+          <span class="tag">#Front‑end</span>
+          <span class="tag">#Back‑end</span>
+          <span class="tag">#BancoDeDados</span>
+          <span class="tag">#SEO</span>
+          <span class="tag">#Conteúdo</span>
+          <span class="tag">#Analytics</span>
+          <span class="tag">#Carreira</span>
+        </div>
+      </div>
+      <div class="hero-card" id="aboutCard">
+        <h2 id="aboutTitle">Sobre</h2>
+        <p id="aboutBody" class="muted">Sou o Thomas. Estudo ADS e Marketing Digital. Aqui publico resumos dos módulos, projetos com código aberto e estudos de caso de marketing. Objetivo: aprender em público, construir portfólio e atrair recrutadores.</p>
+      </div>
+    </section>
+
+    <section class="section">
+      <h2 id="latestTitle">Últimos artigos</h2>
+      <div class="grid" id="postGrid"></div>
+    </section>
+
+    <section class="section">
+      <h2 id="seriesTitle">Séries & Trilhas</h2>
+      <div class="grid" id="seriesGrid"></div>
+    </section>
+
+    <section id="contact" class="section">
+      <h2 id="contactTitle">Contato</h2>
+      <p id="contactBody" class="muted">Quer falar sobre vagas, freelas ou projetos? Envie um e‑mail: <a href="mailto:thomas@example.com">thomas@example.com</a> · LinkedIn: <a href="#" target="_blank" rel="noopener">perfil</a></p>
+    </section>
+
+    <div class="footer">© <span id="year"></span> Thomas Carvalho · <span id="footLang">Português e Inglês</span> · Feito com HTML/CSS/JS</div>
+  </main>
+
+  <!-- Modal de Post -->
+  <div class="modal" id="postModal" aria-hidden="true" role="dialog">
+    <div class="modal-card">
+      <h3 id="modalTitle">Post</h3>
+      <div class="chips" id="modalChips"></div>
+      <p class="muted meta" id="modalMeta"></p>
+      <div id="modalContent"></div>
+      <div style="margin-top:16px; display:flex; gap:10px; justify-content:flex-end">
+        <button class="button" id="btnCloseModal">Fechar</button>
+        <a class="button primary" id="btnCopyLink">Copiar link</a>
+      </div>
+    </div>
+  </div>
+
+  <script>
+    // ====== i18n ======
+    const i18n = {
+      pt: {
+        heroTitle: "Aprendizado em público: do código ao crescimento",
+        heroSubtitle: "Projetos reais, artigos curtos e um portfólio que conecta ADS e Marketing Digital.",
+        about: { title: "Sobre", body: "Sou o Thomas. Estudo ADS e Marketing Digital. Aqui publico resumos dos módulos, projetos com código aberto e estudos de caso de marketing. Objetivo: aprender em público, construir portfólio e atrair recrutadores." },
+        latest: "Últimos artigos",
+        series: "Séries & Trilhas",
+        contact: { title: "Contato", body: "Quer falar sobre vagas, freelas ou projetos? Envie um e‑mail: <a href=\"mailto:thomas@example.com\">thomas@example.com</a> · LinkedIn: <a href=\"#\" target=\"_blank\" rel=\"noopener\">perfil</a>" },
+        footLang: "Português e Inglês",
+        read: "Ler artigo",
+        minutes: "min",
+        cats: { ads:"ADS", mkt:"Marketing", career:"Carreira" }
+      },
+      en: {
+        heroTitle: "Learning in public: from code to growth",
+        heroSubtitle: "Real projects, short articles, and a portfolio that bridges Software Dev and Digital Marketing.",
+        about: { title: "About", body: "I'm Thomas. I study Software Development and Digital Marketing. I publish module summaries, open-source projects, and marketing case studies. Goal: learn in public, build a portfolio, and attract recruiters." },
+        latest: "Latest posts",
+        series: "Series & Tracks",
+        contact: { title: "Contact", body: "Want to talk about roles, freelance or projects? Send an email: <a href=\"mailto:thomas@example.com\">thomas@example.com</a> · LinkedIn: <a href=\"#\" target=\"_blank\" rel=\"noopener\">profile</a>" },
+        footLang: "Portuguese & English",
+        read: "Read post",
+        minutes: "min",
+        cats: { ads:"Software Dev", mkt:"Marketing", career:"Career" }
+      }
+    };
+
+    // ====== Conteúdo de exemplo (você vai substituir) ======
+    // Cada post tem versões PT/EN (title, excerpt, content)
+    const posts = [
+      {
+        id: 'ads-hello-world-cli', date: '2025-11-02', min: 6, tags: ['ADS','Back‑end'], cat: 'ads',
+        pt: { title: 'Projeto CLI em PHP: do zero ao CRUD', excerpt: 'Um guia prático para criar um CLI em PHP puro, organizar módulos e registrar logs.',
+          content: `\n<p>Este tutorial mostra como estruturar um projeto CLI em PHP sem frameworks, com organização modular, autoloader simples e um CRUD básico em arquivo JSON. Inclui ainda um logger padronizado.</p>\n<ol>\n<li>Estrutura de pastas</li>\n<li>Autoload e helpers</li>\n<li>Comandos (create/list/update/delete)</li>\n<li>Boas práticas e próximos passos</li>\n</ol>` },
+        en: { title: 'PHP CLI Project: from zero to CRUD', excerpt: 'A practical guide to build a pure-PHP CLI, organize modules, and log actions.',
+          content: `\n<p>This tutorial shows how to structure a CLI project in plain PHP, with modules, a tiny autoloader, and a JSON-file CRUD. Includes a standardized logger.</p>\n<ol>\n<li>Folder layout</li>\n<li>Autoload & helpers</li>\n<li>Commands (create/list/update/delete)</li>\n<li>Best practices & next steps</li>\n</ol>` }
+      },
+      {
+        id: 'mkt-seo-notion-to-website', date: '2025-11-01', min: 5, tags: ['Marketing','SEO'], cat: 'mkt',
+        pt: { title: 'SEO prático: do Notion ao site com sitemap', excerpt: 'Como transformar notas em artigos otimizados, com título H1, meta, URL e schema.',
+          content: `<p>Transforme anotações soltas em artigos consistentes. Passos: definir palavra-chave, criar H1 claro, escrever meta description, estruturar H2/H3 e gerar sitemap.xml.</p>` },
+        en: { title: 'Practical SEO: Notion to website with sitemap', excerpt: 'Turn notes into optimized articles: H1, meta, URL, and schema.',
+          content: `<p>Turn scattered notes into consistent articles. Steps: pick a focus keyword, craft a clear H1, write a meta description, structure H2/H3, and generate sitemap.xml.</p>` }
+      },
+      {
+        id: 'career-portfolio-blueprint', date: '2025-10-28', min: 4, tags: ['Carreira','Portfolio'], cat: 'career',
+        pt: { title: 'Blueprint de portfólio: ADS + Marketing', excerpt: 'Os 6 blocos essenciais: Sobre, Projetos, Estudos de Caso, Blog, CV e Contato.',
+          content: `<p>Portfólio enxuto e eficaz para recrutadores: </p><ul><li>Sobre com proposta de valor</li><li>3 projetos de ADS</li><li>2 estudos de caso de Marketing</li><li>Blog com 1–2 posts/semana</li><li>CV PDF</li><li>Contato claro</li></ul>` },
+        en: { title: 'Portfolio blueprint: Dev + Marketing', excerpt: 'The 6 essential blocks: About, Projects, Case Studies, Blog, CV, Contact.',
+          content: `<p>Lean, recruiter‑friendly portfolio:</p><ul><li>About with value proposition</li><li>3 Dev projects</li><li>2 Marketing case studies</li><li>Blog (1–2 posts/week)</li><li>CV PDF</li><li>Clear Contact</li></ul>` }
+      }
+    ];
+
+    const series = [
+      {
+        id: 'ads-foundations',
+        color: '#2a415a',
+        cat: 'ads',
+        pt: { title: 'Fundamentos de ADS', desc: 'Algoritmos, lógica, estrutura de dados, POO, HTTP e SQL.' },
+        en: { title: 'Dev Foundations', desc: 'Algorithms, logic, data structures, OOP, HTTP and SQL.' }
+      },
+      {
+        id: 'mkt-growth-seo',
+        color: '#4a2a5a',
+        cat: 'mkt',
+        pt: { title: 'Growth & SEO', desc: 'Pesquisa de palavras-chave, on‑page, conteúdos e analytics.' },
+        en: { title: 'Growth & SEO', desc: 'Keyword research, on‑page, content and analytics.' }
+      },
+      {
+        id: 'career-journey',
+        color: '#2a5a3a',
+        cat: 'career',
+        pt: { title: 'Carreira & Portfólio', desc: 'Projetos, estudos de caso, CV e entrevistas.' },
+        en: { title: 'Career & Portfolio', desc: 'Projects, case studies, CV and interviews.' }
+      }
+    ];
+
+    // ====== Helpers ======
+    const qs = (sel) => document.querySelector(sel);
+    const el = (tag, cls) => { const e=document.createElement(tag); if(cls) e.className=cls; return e; };
+
+    function setLang(lang){
+      const t = i18n[lang];
+      qs('#heroTitle').textContent = t.heroTitle;
+      qs('#heroSubtitle').textContent = t.heroSubtitle;
+      qs('#aboutTitle').textContent = t.about.title;
+      qs('#aboutBody').innerHTML = t.about.body;
+      qs('#latestTitle').textContent = t.latest;
+      qs('#seriesTitle').textContent = t.series;
+      qs('#contactTitle').textContent = t.contact.title;
+      qs('#contactBody').innerHTML = t.contact.body;
+      qs('#footLang').textContent = t.footLang;
+      qs('#btnPT').classList.toggle('active', lang==='pt');
+      qs('#btnEN').classList.toggle('active', lang==='en');
+      renderPosts(lang);
+      renderSeries(lang);
+      localStorage.setItem('tmlang', lang);
+      document.documentElement.lang = lang === 'pt' ? 'pt' : 'en';
+    }
+
+    function renderPosts(lang){
+      const grid = qs('#postGrid');
+      grid.innerHTML = '';
+      posts.forEach(p=>{
+        const c = el('article','card');
+        const badgeRow = el('div','chips');
+        const b1 = el('span','badge'); b1.textContent = (lang==='pt'? i18n.pt.cats[p.cat] : i18n.en.cats[p.cat]) || p.cat;
+        const b2 = el('span','badge'); b2.textContent = p.tags.join(' · ');
+        badgeRow.append(b1,b2);
+        const h = el('h3'); h.textContent = p[lang].title;
+        const e = el('p'); e.textContent = p[lang].excerpt;
+        const meta = el('div','meta'); meta.textContent = `${p.date} • ${p.min} ${i18n[lang].minutes}`;
+        const btn = el('a','button read'); btn.textContent = i18n[lang].read; btn.href = `#post/${p.id}`;
+        btn.addEventListener('click', (ev)=>{ ev.preventDefault(); openPost(p, lang); });
+        c.append(badgeRow,h,e,meta,btn);
+        grid.append(c);
+      })
+    }
+
+    function renderSeries(lang){
+      const grid = qs('#seriesGrid'); grid.innerHTML = '';
+      series.forEach(s=>{
+        const c = el('div','card');
+        c.style.borderColor = '#2a2a3e';
+        const chip = el('span','badge'); chip.textContent = (lang==='pt'? i18n.pt.cats[s.cat] : i18n.en.cats[s.cat]) || s.cat;
+        const h = el('h3'); h.textContent = s[lang].title;
+        const d = el('p'); d.textContent = s[lang].desc;
+        const meta = el('div','meta'); meta.textContent = `#${s.id}`;
+        c.append(chip,h,d,meta);
+        grid.append(c);
+      })
+    }
+
+    // ====== Post modal ======
+    function openPost(p, lang){
+      qs('#modalTitle').textContent = p[lang].title;
+      const chips = qs('#modalChips'); chips.innerHTML='';
+      [ (i18n[lang].cats[p.cat]||p.cat), ...p.tags ].forEach(t=>{ const s=el('span','badge'); s.textContent=t; chips.append(s); })
+      qs('#modalMeta').textContent = `${p.date} • ${p.min} ${i18n[lang].minutes}`;
+      qs('#modalContent').innerHTML = p[lang].content;
+      const m = qs('#postModal'); m.classList.add('open'); m.setAttribute('aria-hidden','false');
+      // deep link
+      const url = new URL(window.location); url.hash = `#post/${p.id}/${lang}`; history.replaceState(null,'',url);
+    }
+    function closePost(){
+      const m = qs('#postModal'); m.classList.remove('open'); m.setAttribute('aria-hidden','true');
+      if(location.hash.startsWith('#post/')){ history.replaceState(null,'', location.pathname + location.search); }
+    }
+
+    // ====== Events ======
+    document.addEventListener('keydown', (e)=>{ if(e.key==='Escape') closePost(); });
+    qs('#btnCloseModal').addEventListener('click', closePost);
+    qs('#btnCopyLink').addEventListener('click', ()=>{ navigator.clipboard.writeText(location.href); qs('#btnCopyLink').textContent='Link copiado!'; setTimeout(()=>qs('#btnCopyLink').textContent='Copiar link',1800)});
+
+    qs('#btnPT').addEventListener('click', ()=> setLang('pt'));
+    qs('#btnEN').addEventListener('click', ()=> setLang('en'));
+    qs('#btnViewLatest').addEventListener('click', ()=> window.scrollTo({top: document.querySelector('#postGrid').offsetTop - 70, behavior: 'smooth'}));
+    qs('#btnAbout').addEventListener('click', ()=> document.querySelector('#aboutCard').scrollIntoView({behavior:'smooth'}));
+
+    // Deep link open
+    function tryOpenFromHash(){
+      if(location.hash.startsWith('#post/')){
+        const [ , , id, forcedLang ] = location.hash.split('/')
+        const p = posts.find(x=>x.id===id);
+        if(p){ setLang(forcedLang==='en'?'en':'pt'); openPost(p, forcedLang==='en'?'en':'pt'); }
+      }
+    }
+
+    // Init
+    (function init(){
+      document.getElementById('year').textContent = new Date().getFullYear();
+      const saved = localStorage.getItem('tmlang') || (navigator.language || 'pt').startsWith('pt') ? 'pt' : 'en';
+      setLang(saved);
+      tryOpenFromHash();
+    })();
+  </script>
+</body>
+</html>
