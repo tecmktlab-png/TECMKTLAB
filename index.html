@@ -9,7 +9,7 @@
   <meta property="og:title" content="Code & Create" />
   <meta property="og:description" content="ADS + Marketing Digital com projetos, estudos e carreira." />
   <meta property="og:type" content="website" />
-  <meta property="og:image" content="" />
+  <meta property="og:image" content="logo-icon.png" />
   <meta name="theme-color" content="#0b0b0f" />
   <style>
     :root{
@@ -36,8 +36,6 @@
     .mark {
   filter: drop-shadow(0 0 6px rgba(134, 231, 255, 0.6));
 }
-
-    {width:28px; height:28px; border-radius:10px; background: conic-gradient(from 180deg, var(--brand), var(--accent), #9cff8a, var(--brand)); box-shadow:0 0 0 4px var(--ring)}
     .title{font-weight:700; letter-spacing:.3px}
     .nav-right{display:flex; align-items:center; gap:8px}
     .pill{display:inline-flex; align-items:center; gap:8px; padding:8px 12px; background:#161622; border:1px solid #222236; border-radius:999px; color:var(--text)}
@@ -218,7 +216,8 @@
           series: "Séries & Trilhas",
 contact: { 
   title: "Contato", 
-  body: "Quer falar sobre vagas, freelas ou projetos? Envie um e-mail: <a href=\"mailto:tecmktlab@gmail.com\">E-mail</a> · LinkedIn: <a href=\"https://www.linkedin.com/in/thomas-duchini/\" target=\"_blank\" rel=\"noopener\">Perfil</a>"
+  body: "Quer falar sobre vagas, freelas ou projetos? Envie um e-mail: <a href=\"mailto:tecmktlab@gmail.com\">E-mail</a> · LinkedIn: <a href="https://www.linkedin.com/in/thomas-duchini/" target="_blank" rel="noopener">perfil</a>
+
 },
           footLang: "Português e Inglês",
           read: "Ler artigo",
@@ -389,9 +388,10 @@ END
       })
     }
 
-    function renderSeries(lang){
-      const grid = qs('#seriesGrid'); grid.innerHTML = '';
-      series.forEach(s=>{
+      function renderSeries(lang){
+        const grid = qs('#seriesGrid'); grid.innerHTML = '';
+        if (!Array.isArray(series) || series.length === 0) return; // evita erro
+        series.forEach(s=>{
         const c = el('div','card');
         c.style.borderColor = '#2a2a3e';
         const chip = el('span','badge'); chip.textContent = (lang==='pt'? i18n.pt.cats[s.cat] : i18n.en.cats[s.cat]) || s.cat;
@@ -441,7 +441,7 @@ END
     // Init
     (function init(){
       document.getElementById('year').textContent = new Date().getFullYear();
-      const saved = localStorage.getItem('tmlang') || (navigator.language || 'pt').startsWith('pt') ? 'pt' : 'en';
+      const saved = localStorage.getItem('tmlang') || (navigator.language || 'pt').startsWith('pt') ? 'pt' : 'en');
       setLang(saved);
       tryOpenFromHash();
     })();
