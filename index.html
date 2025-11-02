@@ -3,11 +3,11 @@
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>Thomas • Tech & Marketing Lab</title>
-  <meta name="description" content="Blog bilíngue de ADS (Análise e Desenvolvimento de Sistemas) + Marketing Digital. Estudos, projetos, portfólio e artigos práticos." />
+  <title>Code & Create</title>
+  <meta name="description" content="ADS (Análise e Desenvolvimento de Sistemas) + Marketing Digital. Estudos, projetos, portfólio e artigos práticos." />
   <meta name="author" content="Thomas Carvalho" />
-  <meta property="og:title" content="Thomas • Tech & Marketing Lab" />
-  <meta property="og:description" content="Blog bilíngue de ADS + Marketing Digital com projetos, estudos e carreira." />
+  <meta property="og:title" content="Code & Create" />
+  <meta property="og:description" content="ADS + Marketing Digital com projetos, estudos e carreira." />
   <meta property="og:type" content="website" />
   <meta property="og:image" content="" />
   <meta name="theme-color" content="#0b0b0f" />
@@ -24,7 +24,20 @@
     header{position:sticky; top:0; backdrop-filter: blur(10px); background: rgba(11,11,15,.6); border-bottom:1px solid #1f1f2b; z-index:50}
     .nav{display:flex; align-items:center; justify-content:space-between; gap:12px}
     .logo{display:flex; align-items:center; gap:10px}
-    .mark{width:28px; height:28px; border-radius:10px; background: conic-gradient(from 180deg, var(--brand), var(--accent), #9cff8a, var(--brand)); box-shadow:0 0 0 4px var(--ring)}
+    .mark {
+      width: 32px;
+      height: 32px;
+      border-radius: 8px;
+      display: inline-block;
+      object-fit: contain;
+      vertical-align: middle;
+      box-shadow: 0 0 8px var(--ring);
+    }
+    .mark {
+  filter: drop-shadow(0 0 6px rgba(134, 231, 255, 0.6));
+}
+
+    {width:28px; height:28px; border-radius:10px; background: conic-gradient(from 180deg, var(--brand), var(--accent), #9cff8a, var(--brand)); box-shadow:0 0 0 4px var(--ring)}
     .title{font-weight:700; letter-spacing:.3px}
     .nav-right{display:flex; align-items:center; gap:8px}
     .pill{display:inline-flex; align-items:center; gap:8px; padding:8px 12px; background:#161622; border:1px solid #222236; border-radius:999px; color:var(--text)}
@@ -120,11 +133,11 @@
 <body>
   <header>
     <div class="container nav">
-      <div class="logo">
-        <div class="mark" aria-hidden="true"></div>
-        <div class="title">Tech & Marketing Lab</div>
-        <span class="badge" id="roleBadge">ADS + Marketing</span>
-      </div>
+     <div class="logo">
+  <img src="logo-icon.png" alt="Code & Create logo" class="mark" />
+  <div class="title">Code & Create</div>
+  <span class="badge" id="roleBadge">ADS + Marketing</span>
+    </div>
       <div class="nav-right">
         <div class="pill lang" role="group" aria-label="language switcher">
           <button id="btnPT" class="active">PT</button>
