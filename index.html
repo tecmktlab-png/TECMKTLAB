@@ -87,6 +87,34 @@
       .hero{grid-template-columns:1fr}
       .grid{grid-template-columns:1fr}
     }
+    /* imagem líder no topo do modal, com texto ao lado */
+.lead-img{
+  float: left;
+  width: 32%;
+  max-width: 160px;   /* controla “não muito grande” */
+  min-width: 120px;
+  height: auto;
+  border-radius: 12px;
+  margin: 0 14px 10px 0; /* espaço do texto ao lado */
+}
+
+/* garante que imagens dentro do modal não estourem */
+.modal-card img{ max-width: 100%; height: auto; }
+
+/* quando a tela for estreita, parar de flutuar e ocupar a largura inteira */
+@media (max-width: 640px){
+  .lead-img{
+    float: none;
+    display: block;
+    width: 100%;
+    max-width: 100%;
+    margin: 0 0 12px 0;
+  }
+}
+
+/* utilitário para “desgrudar” o conteúdo seguinte do float */
+.clear{ clear: both; }
+
   </style>
 </head>
 <body>
@@ -214,6 +242,10 @@ contact: {
     title: 'Pensar como programador: lógica aplicada na prática',
     excerpt: 'Como desenvolver o raciocínio lógico que transforma ideias em soluções programáveis.',
     content: `
+    <img src="assets/pensar-como-programador.jpg"
+     alt="Pensar como programador — lógica aplicada na prática"
+     class="lead-img">
+     
 <p>Antes de começar a programar de verdade, eu percebi que a parte mais importante não é o código em si — é a forma de pensar. “Pensar como programador” significa aprender a enxergar um problema e dividi-lo em pequenos passos lógicos, que depois viram instruções no computador.</p>
 
 <p>No começo da disciplina de <strong>Programação de Soluções Computacionais</strong>, tudo parecia teórico demais. Mas, aos poucos, percebi que a lógica é a base de tudo. Ela ensina a organizar o raciocínio, a não pular etapas e a encontrar o caminho mais claro entre a ideia e a execução.</p>
