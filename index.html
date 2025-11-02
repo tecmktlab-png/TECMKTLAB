@@ -54,10 +54,31 @@
 
     .footer{margin-top:40px; padding:18px 0; border-top:1px solid #1f1f2b; color:var(--muted); font-size:14px}
 
-    .modal{position:fixed; inset:0; display:none; align-items:center; justify-content:center; background:rgba(5,5,8,.7)}
-    .modal.open{display:flex}
-    .modal-card{max-width:900px; width:92%; background:#0f0f17; border:1px solid #222236; border-radius:16px; padding:22px; max-height:80vh; overflow:auto}
-    .modal h3{margin-top:0}
+    .modal {
+  position: fixed;
+  inset: 0;
+  display: none;
+  align-items: flex-start; /* Abre o modal no topo, não no centro */
+  justify-content: center;
+  background: rgba(5,5,8,.7);
+  overflow-y: auto; /* permite rolar se o conteúdo for grande */
+  padding: 40px 0; /* espaço para não grudar no topo */
+  z-index: 100;
+}
+
+.modal.open {
+  display: flex;
+}
+
+.modal-card {
+  max-width: 900px;
+  width: 92%;
+  background: #0f0f17;
+  border: 1px solid #222236;
+  border-radius: 16px;
+  padding: 22px;
+  box-shadow: 0 10px 30px rgba(0,0,0,.4);
+}
 
     .kbar{margin-top:10px; display:flex; gap:10px; flex-wrap:wrap}
     .kbar .tag{font-size:12px; padding:4px 8px; border:1px dashed #2b2b3f; color:var(--muted); border-radius:999px}
