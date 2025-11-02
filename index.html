@@ -148,42 +148,93 @@
   <script>
     // ====== i18n ======
     const i18n = {
-      pt: {
-        heroTitle: "Aprendizado em público: do código ao crescimento",
-        heroSubtitle: "Projetos reais, artigos curtos e um portfólio que conecta ADS e Marketing Digital.",
-        about: { title: "Sobre", body: "Sou o Thomas. Estudo ADS e Marketing Digital. Aqui publico resumos dos módulos, projetos com código aberto e estudos de caso de marketing. Objetivo: aprender em público, construir portfólio e atrair recrutadores." },
-        latest: "Últimos artigos",
-        series: "Séries & Trilhas",
-        contact: { title: "Contato", body: "Quer falar sobre vagas, freelas ou projetos? Envie um e‑mail: <a href=\"mailto:thomas@example.com\">thomas@example.com</a> · LinkedIn: <a href=\"#\" target=\"_blank\" rel=\"noopener\">perfil</a>" },
-        footLang: "Português e Inglês",
-        read: "Ler artigo",
-        minutes: "min",
-        cats: { ads:"ADS", mkt:"Marketing", career:"Carreira" }
-      },
-      en: {
-        heroTitle: "Learning in public: from code to growth",
-        heroSubtitle: "Real projects, short articles, and a portfolio that bridges Software Dev and Digital Marketing.",
-        about: { title: "About", body: "I'm Thomas. I study Software Development and Digital Marketing. I publish module summaries, open-source projects, and marketing case studies. Goal: learn in public, build a portfolio, and attract recruiters." },
-        latest: "Latest posts",
-        series: "Series & Tracks",
-        contact: { title: "Contact", body: "Want to talk about roles, freelance or projects? Send an email: <a href=\"mailto:thomas@example.com\">thomas@example.com</a> · LinkedIn: <a href=\"#\" target=\"_blank\" rel=\"noopener\">profile</a>" },
-        footLang: "Portuguese & English",
-        read: "Read post",
-        minutes: "min",
-        cats: { ads:"Software Dev", mkt:"Marketing", career:"Career" }
-      }
-    };
+        pt: {
+          heroTitle: "Aprendizado em público: do código ao crescimento",
+          heroSubtitle: "Projetos reais, artigos curtos e um portfólio que conecta ADS e Marketing Digital.",
+          about: { title: "Sobre", body: "Sou o Thomas. Estudo ADS e Marketing Digital. Aqui publico resumos dos módulos, projetos com código aberto e estudos de caso de marketing. Objetivo: aprender em público, construir portfólio e atrair recrutadores." },
+          latest: "Últimos artigos",
+          series: "Séries & Trilhas",
+          contact: { title: "Contato", body: "Quer falar sobre vagas, freelas ou projetos? Envie um e‑mail: <a href=\"mailto:thomas@example.com\">thomas@example.com</a> · LinkedIn: <a href=\"#\" target=\"_blank\" rel=\"noopener\">perfil</a>" },
+          footLang: "Português e Inglês",
+          read: "Ler artigo",
+          minutes: "min",
+          cats: { ads:"ADS", mkt:"Marketing", career:"Carreira" }
+        },
+        en: {
+          heroTitle: "Learning in public: from code to growth",
+          heroSubtitle: "Real projects, short articles, and a portfolio that bridges Software Dev and Digital Marketing.",
+          about: { title: "About", body: "I'm Thomas. I study Software Development and Digital Marketing. I publish module summaries, open-source projects, and marketing case studies. Goal: learn in public, build a portfolio, and attract recruiters." },
+          latest: "Latest posts",
+          series: "Series & Tracks",
+          contact: { title: "Contact", body: "Want to talk about roles, freelance or projects? Send an email: <a href=\"mailto:thomas@example.com\">thomas@example.com</a> · LinkedIn: <a href=\"#\" target=\"_blank\" rel=\"noopener\">profile</a>" },
+          footLang: "Portuguese & English",
+          read: "Read post",
+          minutes: "min",
+          cats: { ads:"Software Dev", mkt:"Marketing", career:"Career" }
+        }
+      };
+  
+      // ====== Posts ======
+      // Cada post tem versões PT/EN (title, excerpt, content)
+      const posts = [
+ {
+  id: 'ads-thinking-logic',
+  date: '2025-11-02',
+  min: 5,
+  tags: ['ADS', 'Lógica', 'Algoritmos'],
+  cat: 'ads',
+  pt: {
+    title: 'Pensar como programador: lógica aplicada na prática',
+    excerpt: 'Como desenvolver o raciocínio lógico que transforma ideias em soluções programáveis.',
+    content: `
+<p>Antes de começar a programar de verdade, eu percebi que a parte mais importante não é o código em si — é a forma de pensar. “Pensar como programador” significa aprender a enxergar um problema e dividi-lo em pequenos passos lógicos, que depois viram instruções no computador.</p>
 
-    // ====== Posts ======
-    // Cada post tem versões PT/EN (title, excerpt, content)
-    const posts = [
-      {
-        id: 'ads-hello-world-cli', date: '2025-11-02', min: 6, tags: ['ADS','Back‑end'], cat: 'ads',
-        pt: { title: 'Pensar como programador: lógica aplicada na prática', excerpt: 'Como resolvo problemas reais com o raciocínio de Programação de Soluções Computacionais.',
-          content: `\n<p>Este tutorial mostra como estruturar um projeto CLI em PHP sem frameworks, com organização modular, autoloader simples e um CRUD básico em arquivo JSON. Inclui ainda um logger padronizado.</p>\n<ol>\n<li>Estrutura de pastas</li>\n<li>Autoload e helpers</li>\n<li>Comandos (create/list/update/delete)</li>\n<li>Boas práticas e próximos passos</li>\n</ol>` },
-        en: { title: 'Thinking Like a Programmer: Logic in Action', excerpt: 'How I solve real problems using the reasoning from Computational Solutions Programming.',
-          content: `\n<p>This tutorial shows how to structure a CLI project in plain PHP, with modules, a tiny autoloader, and a JSON-file CRUD. Includes a standardized logger.</p>\n<ol>\n<li>Folder layout</li>\n<li>Autoload & helpers</li>\n<li>Commands (create/list/update/delete)</li>\n<li>Best practices & next steps</li>\n</ol>` }
-      },
+<p>No começo da disciplina de <strong>Programação de Soluções Computacionais</strong>, tudo parecia teórico demais. Mas, aos poucos, percebi que a lógica é a base de tudo. Ela ensina a organizar o raciocínio, a não pular etapas e a encontrar o caminho mais claro entre a ideia e a execução.</p>
+
+<p>Um dos primeiros exercícios que fiz foi escrever um pseudocódigo para calcular a média de três notas. Parece simples, mas exige seguir a sequência certa:</p>
+
+<pre><code>INÍCIO
+  LER nota1, nota2, nota3
+  media ← (nota1 + nota2 + nota3) / 3
+  SE media ≥ 7 ENTÃO
+    ESCREVER "Aprovado"
+  SENÃO
+    ESCREVER "Reprovado"
+FIM
+</code></pre>
+
+<p>Esse tipo de exercício me fez perceber que programar é basicamente traduzir o raciocínio humano para uma linguagem que o computador entende. O que muda de uma linguagem para outra (como Python, Java ou PHP) é só a sintaxe — a lógica continua sendo a mesma.</p>
+
+<p>Hoje, quando olho um problema, já tento imaginar como ele seria em passos lógicos: o que preciso ler, o que preciso calcular e o que preciso mostrar no final. É esse tipo de pensamento que transforma um iniciante em alguém capaz de criar soluções reais.</p>
+`
+  },
+  en: {
+    title: 'Thinking Like a Programmer: Logic in Action',
+    excerpt: 'How to develop the logical reasoning that turns ideas into programmable solutions.',
+    content: `
+<p>Before I started programming for real, I realised that the most important part isn’t the code itself — it’s the way we think. “Thinking like a programmer” means learning to see a problem and break it down into small logical steps that later become computer instructions.</p>
+
+<p>At first, in the <strong>Computational Solutions Programming</strong> module, everything felt too abstract. But little by little, I understood that logic is the foundation of everything. It teaches you how to organise your reasoning, avoid skipping steps, and find the clearest path between an idea and its execution.</p>
+
+<p>One of the first exercises I did was writing pseudocode to calculate the average of three grades. It looks simple, but it forces you to follow the right order:</p>
+
+<pre><code>START
+  READ grade1, grade2, grade3
+  average ← (grade1 + grade2 + grade3) / 3
+  IF average ≥ 7 THEN
+    PRINT "Approved"
+  ELSE
+    PRINT "Failed"
+END
+</code></pre>
+
+<p>This kind of exercise made me see that programming is basically translating human reasoning into a language the computer understands. What changes from one language to another (Python, Java or PHP) is only the syntax — the logic stays the same.</p>
+
+<p>Now, when I face a problem, I try to imagine it as logical steps: what I need to read, what I need to calculate, and what I need to show in the end. That way of thinking is what turns a beginner into someone who can create real solutions.</p>
+`
+  }
+},
+
       /*{
         id: 'mkt-seo-notion-to-website', date: '2025-11-01', min: 5, tags: ['Marketing','SEO'], cat: 'mkt',
         pt: { title: 'SEO prático: do Notion ao site com sitemap', excerpt: 'Como transformar notas em artigos otimizados, com título H1, meta, URL e schema.',
