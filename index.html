@@ -29,13 +29,20 @@
     header{position:sticky; top:0; backdrop-filter: blur(10px); background: rgba(11,11,15,.6); border-bottom:1px solid #1f1f2b; z-index:50}
     .nav{display:flex; align-items:center; justify-content:space-between; gap:12px}
     .logo{display:flex; align-items:center; gap:10px}
-    .mark{
-  width:52px; height:52px; border-radius:10px;
-  display:inline-block; vertical-align:middle;
-  object-fit:cover; background-color:transparent;
-  box-shadow:0 0 10px var(--ring);
-  filter: drop-shadow(0 0 8px rgba(134,231,255,.8));
+    .mark {
+  width: 52px;        /* imagem maior */
+  height: 52px;
+  border-radius: 6px; /* bordas menos arredondadas, ocupa mais área */
+  display: inline-block;
+  vertical-align: middle;
+  object-fit: cover;
+  background-color: transparent;
+  box-shadow: 0 0 4px var(--ring); /* sombra mais sutil */
+  filter: drop-shadow(0 0 4px rgba(134,231,255,0.6)); /* brilho mais próximo */
+  margin: 0; /* garante sem margens externas extras */
+  padding: 0; /* garante sem preenchimento interno */
 }
+
     .title{font-weight:700; letter-spacing:.3px}
     .nav-right{display:flex; align-items:center; gap:8px}
     .pill{display:inline-flex; align-items:center; gap:8px; padding:8px 12px; background:#161622; border:1px solid #222236; border-radius:999px; color:var(--text)}
