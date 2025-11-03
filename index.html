@@ -29,19 +29,12 @@
     header{position:sticky; top:0; backdrop-filter: blur(10px); background: rgba(11,11,15,.6); border-bottom:1px solid #1f1f2b; z-index:50}
     .nav{display:flex; align-items:center; justify-content:space-between; gap:12px}
     .logo{display:flex; align-items:center; gap:10px}
-    .mark {
-    width: 40px;
-    height: 40px;
-    border-radius: 10px;
-    display: inline-block;
-    object-fit: cover; /* preenche todo o quadrado */
-    vertical-align: middle;
-    box-shadow: 0 0 10px var(--ring);
-    background-color: transparent;
-  }
-
-    .mark {
-  filter: drop-shadow(0 0 8px rgba(134, 231, 255, 0.8));
+    .mark{
+  width:40px; height:40px; border-radius:10px;
+  display:inline-block; vertical-align:middle;
+  object-fit:cover; background-color:transparent;
+  box-shadow:0 0 10px var(--ring);
+  filter: drop-shadow(0 0 8px rgba(134,231,255,.8));
 }
     .title{font-weight:700; letter-spacing:.3px}
     .nav-right{display:flex; align-items:center; gap:8px}
@@ -106,22 +99,26 @@
       .grid{grid-template-columns:1fr}
     }
     /* imagem líder no topo do modal, com texto ao lado */
-.lead-img{
+/* imagem líder no topo do modal, com texto ao lado */
+.lead-img {
   float: right;
   width: 32%;
   max-width: 160px;   /* controla “não muito grande” */
   min-width: 120px;
   height: auto;
   border-radius: 12px;
-  margin: 0 14px 10px 0; /* espaço do texto ao lado */
+  margin: 0 0 10px 14px; /* espaço à esquerda (correto para float:right) */
 }
 
 /* garante que imagens dentro do modal não estourem */
-.modal-card img{ max-width: 100%; height: auto; }
+.modal-card img {
+  max-width: 100%;
+  height: auto;
+}
 
 /* quando a tela for estreita, parar de flutuar e ocupar a largura inteira */
-@media (max-width: 640px){
-  .lead-img{
+@media (max-width: 640px) {
+  .lead-img {
     float: none;
     display: block;
     width: 100%;
@@ -192,7 +189,7 @@
 
     <section id="contact" class="section">
       <h2 id="contactTitle">Contato</h2>
-      <p id="contactBody" class="muted">Quer falar sobre vagas, freelas ou projetos? Envie um e‑mail: <a href="mailto:tecmktlab@gmail.com">tecmktlab@gmail.com</a> · LinkedIn: <a href="#" target="https://www.linkedin.com/in/thomas-duchini/" rel="noopener">perfil</a></p>
+      <p id="contactBody" class="muted">Quer falar sobre vagas, freelas ou projetos? Envie um e‑mail: <a href="mailto:tecmktlab@gmail.com">tecmktlab@gmail.com</a> · LinkedIn: <a href="https://www.linkedin.com/in/thomas-duchini/" target="_blank" rel="noopener">perfil</a></p>
     </section>
 
     <div class="footer">© <span id="year"></span> Thomas Carvalho · <span id="footLang">Português e Inglês</span> · Feito com HTML/CSS/JS</div>
@@ -215,22 +212,21 @@
   <script>
     // ====== i18n ======
     const i18n = {
-        pt: {
-          heroTitle: "Aprendizado em público: do código ao crescimento",
-          heroSubtitle: "Projetos reais, artigos curtos e um portfólio que conecta ADS e Marketing Digital.",
-          about: { title: "Sobre", body: "Sou o Thomas. Estudo ADS e Marketing Digital. Aqui publico resumos dos módulos, projetos com código aberto e estudos de caso de marketing. Objetivo: aprender em público, construir portfólio e atrair recrutadores." },
-          latest: "Últimos artigos",
-          series: "Séries & Trilhas",
-contact: { 
-  title: "Contato", 
-  body: "Quer falar sobre vagas, freelas ou projetos? Envie um e-mail: <a href=\"mailto:tecmktlab@gmail.com\">E-mail</a> · LinkedIn: <a href="https://www.linkedin.com/in/thomas-duchini/" target="_blank" rel="noopener">perfil</a>
-
+       pt: {
+  heroTitle: "Aprendizado em público: do código ao crescimento",
+  heroSubtitle: "Projetos reais, artigos curtos e um portfólio que conecta ADS e Marketing Digital.",
+  about: { title: "Sobre", body: "Sou o Thomas. Estudo ADS e Marketing Digital. Aqui publico resumos dos módulos, projetos com código aberto e estudos de caso de marketing. Objetivo: aprender em público, construir portfólio e atrair recrutadores." },
+  latest: "Últimos artigos",
+  series: "Séries & Trilhas",
+  contact: {
+    title: "Contato",
+    body: 'Quer falar sobre vagas, freelas ou projetos? Envie um e-mail: <a href="mailto:tecmktlab@gmail.com">E-mail</a> · LinkedIn: <a href="https://www.linkedin.com/in/thomas-duchini/" target="_blank" rel="noopener">perfil</a>'
+  },
+  footLang: "Português e Inglês",
+  read: "Ler artigo",
+  minutes: "min",
+  cats: { ads:"ADS", mkt:"Marketing", career:"Carreira" }
 },
-          footLang: "Português e Inglês",
-          read: "Ler artigo",
-          minutes: "min",
-          cats: { ads:"ADS", mkt:"Marketing", career:"Carreira" }
-        },
         en: {
           heroTitle: "Learning in public: from code to growth",
           heroSubtitle: "Real projects, short articles, and a portfolio that bridges Software Dev and Digital Marketing.",
@@ -329,7 +325,8 @@ END
       }*/
     ];
 
-    /*const series = [
+    const series = []; // deixa vazio por enquanto
+/*
       {
         id: 'ads-foundations',
         color: '#2a415a',
@@ -438,20 +435,24 @@ END
 
     // Deep link open
     function tryOpenFromHash(){
-      if(location.hash.startsWith('#post/')){
-        const [ , , id, forcedLang ] = location.hash.split('/')
-        const p = posts.find(x=>x.id===id);
-        if(p){ setLang(forcedLang==='en'?'en':'pt'); openPost(p, forcedLang==='en'?'en':'pt'); }
-      }
-    }
-
+  if(!location.hash.startsWith('#post/')) return;
+  const parts = location.hash.split('/');
+  // formatos: ["#post", "id"] ou ["#post", "id", "pt|en"]
+  const id = parts[1] || parts[2];
+  const forcedLang = parts[2] && parts[2].length === 2 ? parts[2] : null;
+  const p = posts.find(x => x.id === id);
+  if (!p) return;
+  const lang = forcedLang === 'en' ? 'en' : 'pt';
+  setLang(lang);
+  openPost(p, lang);
+}
     // Init
     (function init(){
-      document.getElementById('year').textContent = new Date().getFullYear();
-      const saved = localStorage.getItem('tmlang') || (navigator.language || 'pt').startsWith('pt') ? 'pt' : 'en');
-      setLang(saved);
-      tryOpenFromHash();
-    })();
+  document.getElementById('year').textContent = new Date().getFullYear();
+  const saved = localStorage.getItem('tmlang') || ((navigator.language || 'pt').startsWith('pt') ? 'pt' : 'en');
+  setLang(saved);
+  tryOpenFromHash();
+})();
   </script>
 </body>
 </html>
