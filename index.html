@@ -26,7 +26,7 @@
     a{color:var(--brand); text-decoration:none}
     a:hover{text-decoration:underline}
     .container{max-width:1100px; margin:0 auto; padding:24px}
-    header{position:sticky; top:0; backdrop-filter: blur(10px); background: rgba(11,11,15,.6); border-bottom:1px solid #1f1f2b; z-index:50}
+    header{position:sticky; top:0; backdrop-filter: blur(10px); : rgba(11,11,15,.6); border-bottom:1px solid #1f1f2b; z-index:50}
     .nav{display:flex; align-items:center; justify-content:space-between; gap:12px}
     .logo{display:flex; align-items:center; gap:10px}
     .mark {
@@ -36,7 +36,7 @@
     display: inline-block;
     vertical-align: middle;
     object-fit: cover;
-    background-color: transparent;
+    -color: transparent;
     box-shadow: 0 0 4px var(--ring); /* sombra mais sutil */
     filter: drop-shadow(0 0 4px rgba(134,231,255,0.6)); /* brilho mais próximo */
     margin: 0; /* garante sem margens externas extras */
@@ -45,8 +45,8 @@
     
     .title{font-weight:700; letter-spacing:.3px}
     .nav-right{display:flex; align-items:center; gap:8px}
-    .pill{display:inline-flex; align-items:center; gap:8px; padding:8px 12px; background:#161622; border:1px solid #222236; border-radius:999px; color:var(--text)}
-    .lang button{background:transparent; border:0; color:var(--muted); cursor:pointer; font-weight:600}
+    .pill{display:inline-flex; align-items:center; gap:8px; padding:8px 12px; :#161622; border:1px solid #222236; border-radius:999px; color:var(--text)}
+    .lang button{:transparent; border:0; color:var(--muted); cursor:pointer; font-weight:600}
     .lang button.active{color:var(--text)}
 
     .hero{display:grid; grid-template-columns: 1.2fr .8fr; gap:28px; padding:28px 0}
@@ -210,10 +210,10 @@
 .clear{ clear: both; }
 <style>
   body {
-    background: url('background.jpg') center/cover no-repeat fixed;
+    background: url('background.png') center/cover no-repeat fixed;
   }
     body {
-      background: url('background.jpg') center/cover no-repeat fixed;
+      background: url('background.png') center/cover no-repeat fixed;
     }
 
     body::before {
