@@ -573,21 +573,6 @@ function openPost(p, lang){
   qs('#modalMeta').textContent = `${p.date} • ${p.min} ${i18n[lang].minutes}`;
   qs('#modalContent').innerHTML = p[lang].content;
 
-  // bolinha com a imagem do artigo
-  const bubble = qs('#modalBubble');
-  const tempDiv = document.createElement('div');
-  tempDiv.innerHTML = p[lang].content;
-  const imgInContent = tempDiv.querySelector('img');
-
-  if (imgInContent) {
-    bubble.src = imgInContent.src;
-    bubble.alt = p[lang].title;     // acessibilidade
-    bubble.style.display = 'block';
-  } else {
-    bubble.removeAttribute('src');  // evita reuso
-    bubble.style.display = 'none';
-  }
-
   const m = qs('#postModal');
   m.classList.add('open');
   m.setAttribute('aria-hidden','false');
