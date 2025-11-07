@@ -186,7 +186,7 @@
           <span class="muted">·</span>
           <button id="btnEN">EN</button>
         </div>
-        <a class="pill" href="#contact">Contato</a>
+        <a class="pill" id="navContact" href="#contact">Contato</a>
       </div>
     </div>
   </header>
@@ -266,7 +266,6 @@ Hoje, uso o Code & Create pra juntar tudo isso — projetos, ideias e aprendizad
   </div>
 
   <script>
-    // ====== i18n ======
     const i18n = {
   pt: {
     heroTitle: "Aprendizado em público: do código ao crescimento",
@@ -287,7 +286,15 @@ Hoje, uso o Code & Create pra juntar tudo isso — projetos, ideias e aprendizad
     footLang: "Português e Inglês",
     read: "Ler artigo",
     minutes: "min",
-    cats: { ads: "ADS", mkt: "Marketing", career: "Carreira" }
+    cats: { ads: "ADS", mkt: "Marketing", career: "Carreira" },
+    nav: { contact: "Contato" },
+    cta: {
+      viewLatest: "Ver últimos artigos",
+      about: "Sobre o autor",
+      copy: "Copiar link",
+      copied: "Link copiado!",
+      close: "Fechar"
+    }
   },
 
   en: {
@@ -309,10 +316,17 @@ Now, I use Code & Create as my open lab — a place to build, break, learn, and 
     footLang: "Portuguese & English",
     read: "Read post",
     minutes: "min",
-    cats: { ads: "Software Dev", mkt: "Marketing", career: "Career" }
+    cats: { ads: "Software Dev", mkt: "Marketing", career: "Career" },
+    nav: { contact: "Contact" },
+    cta: {
+      viewLatest: "View latest posts",
+      about: "About the author",
+      copy: "Copy link",
+      copied: "Link copied!",
+      close: "Close"
+    }
   }
 };
-  
       // ====== Posts ======
       // Cada post tem versões PT/EN (title, excerpt, content)
       const posts = [
@@ -355,6 +369,9 @@ FIM
     title: 'Thinking Like a Programmer: Logic in Action',
     excerpt: 'How to develop the logical reasoning that turns ideas into programmable solutions.',
     content: `
+    <img src="./pensar-como-programador.jpg"
+         alt="Thinking like a programmer — logic in action"
+         class="lead-img">
 <p>Before I started programming for real, I realised that the most important part isn’t the code itself — it’s the way we think. “Thinking like a programmer” means learning to see a problem and break it down into small logical steps that later become computer instructions.</p>
 
 <p>At first, in the <strong>Computational Solutions Programming</strong> module, everything felt too abstract. But little by little, I understood that logic is the foundation of everything. It teaches you how to organise your reasoning, avoid skipping steps, and find the clearest path between an idea and its execution.</p>
@@ -438,6 +455,11 @@ END
       qs('#footLang').textContent = t.footLang;
       qs('#btnPT').classList.toggle('active', lang==='pt');
       qs('#btnEN').classList.toggle('active', lang==='en');
+      qs('#btnViewLatest').textContent = t.cta.viewLatest;
+      qs('#btnAbout').textContent = t.cta.about;
+      qs('#navContact').textContent = t.nav.contact;
+      qs('#btnCloseModal').textContent = t.cta.close;
+      qs('#btnCopyLink').textContent = t.cta.copy;
       renderPosts(lang);
       renderSeries(lang);
       localStorage.setItem('tmlang', lang);
@@ -460,6 +482,7 @@ END
         btn.addEventListener('click', (ev)=>{ ev.preventDefault(); openPost(p, lang); });
         c.append(badgeRow,h,e,meta,btn);
         grid.append(c);
+        
       })
     }
 
@@ -497,8 +520,13 @@ END
     // ====== Events ======
     document.addEventListener('keydown', (e)=>{ if(e.key==='Escape') closePost(); });
     qs('#btnCloseModal').addEventListener('click', closePost);
-    qs('#btnCopyLink').addEventListener('click', ()=>{ navigator.clipboard.writeText(location.href); qs('#btnCopyLink').textContent='Link copiado!'; setTimeout(()=>qs('#btnCopyLink').textContent='Copiar link',1800)});
-
+    qs('#btnCopyLink').addEventListener('click', ()=>{
+      navigator.clipboard.writeText(location.href);
+      const lang = (document.documentElement.lang || 'pt').startsWith('en') ? 'en' : 'pt';
+      const t = i18n[lang];
+      qs('#btnCopyLink').textContent = t.cta.copied;
+      setTimeout(()=> qs('#btnCopyLink').textContent = t.cta.copy, 1800);
+    });
     qs('#btnPT').addEventListener('click', ()=> setLang('pt'));
     qs('#btnEN').addEventListener('click', ()=> setLang('en'));
     qs('#btnViewLatest').addEventListener('click', ()=> window.scrollTo({top: document.querySelector('#postGrid').offsetTop - 70, behavior: 'smooth'}));
@@ -522,6 +550,7 @@ END
   document.getElementById('year').textContent = new Date().getFullYear();
   const saved = localStorage.getItem('tmlang') || ((navigator.language || 'pt').startsWith('pt') ? 'pt' : 'en');
   setLang(saved);
+  window.addEventListener('hashchange', tryOpenFromHash);
   tryOpenFromHash();
 })();
   </script>
