@@ -24,10 +24,15 @@ if ($method === 'HEAD') {
 
 if ($method === 'GET') {
   if (!empty($_SESSION['adm_ok'])) {
-    respond_text(200, 'ok');
+    http_response_code(200);
+    header('Content-Type: text/plain; charset=utf-8');
+    echo 'ok';
   } else {
-    respond_text(401, 'no');
+    http_response_code(401);
+    header('Content-Type: text/plain; charset=utf-8');
+    echo 'no';
   }
+  exit;
 }
 
 if ($method === 'POST') {
