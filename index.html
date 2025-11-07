@@ -105,6 +105,22 @@
 
     .grid{display:grid; grid-template-columns: repeat(3, 1fr); gap:18px}
     .card{background:linear-gradient(180deg,#12121a,#0f0f17); border:1px solid #212133; border-radius:16px; padding:18px; display:flex; flex-direction:column; gap:10px}
+    .card{ position: relative; } /* para posicionar a bolinha */
+    .card-bubble{
+      position: absolute;
+      top: 12px;
+      right: 12px;
+      width: 46px;
+      height: 46px;
+      border-radius: 50%;
+      object-fit: cover;
+      border: 2px solid var(--ring);
+      box-shadow: 0 0 8px rgba(134,231,255,.35);
+      display: none; /* aparece só quando tiver imagem */
+    }
+    @media (max-width:640px){
+      .card-bubble{ width: 42px; height: 42px; top: 10px; right: 10px; }
+    }
     .badge{display:inline-flex; padding:6px 10px; border-radius:999px; font-size:12px; border:1px solid #2a2a3e; color:var(--muted)}
     .chips{display:flex; gap:8px; flex-wrap:wrap}
     .card h3{margin:2px 0 4px; font-size:18px}
@@ -488,25 +504,47 @@ END
       document.documentElement.lang = lang === 'pt' ? 'pt' : 'en';
     }
 
-    function renderPosts(lang){
-      const grid = qs('#postGrid');
-      grid.innerHTML = '';
-      posts.forEach(p=>{
-        const c = el('article','card');
-        const badgeRow = el('div','chips');
-        const b1 = el('span','badge'); b1.textContent = (lang==='pt'? i18n.pt.cats[p.cat] : i18n.en.cats[p.cat]) || p.cat;
-        const b2 = el('span','badge'); b2.textContent = p.tags.join(' · ');
-        badgeRow.append(b1,b2);
-        const h = el('h3'); h.textContent = p[lang].title;
-        const e = el('p'); e.textContent = p[lang].excerpt;
-        const meta = el('div','meta'); meta.textContent = `${p.date} • ${p.min} ${i18n[lang].minutes}`;
-        const btn = el('a','button read'); btn.textContent = i18n[lang].read; btn.href = `#post/${p.id}`;
-        btn.addEventListener('click', (ev)=>{ ev.preventDefault(); openPost(p, lang); });
-        c.append(badgeRow,h,e,meta,btn);
-        grid.append(c);
-        
-      })
+   function renderPosts(lang){
+  const grid = qs('#postGrid');
+  grid.innerHTML = '';
+
+  posts.forEach(p=>{
+    const c = el('article','card');
+
+    // --- bolinha de preview no card ---
+    const bubble = el('img','card-bubble');
+    bubble.alt = p[lang].title;
+
+    // extrai a 1ª <img> do conteúdo do post para usar como capa
+    const tmp = document.createElement('div');
+    tmp.innerHTML = p[lang].content;
+    const innerImg = tmp.querySelector('img');
+    if (innerImg) {
+      bubble.src = innerImg.getAttribute('src');
+      bubble.style.display = 'block';
     }
+    c.append(bubble);
+    // ----------------------------------
+
+    const badgeRow = el('div','chips');
+    const b1 = el('span','badge'); b1.textContent = (lang==='pt'? i18n.pt.cats[p.cat] : i18n.en.cats[p.cat]) || p.cat;
+    const b2 = el('span','badge'); b2.textContent = p.tags.join(' · ');
+    badgeRow.append(b1,b2);
+
+    const h = el('h3'); h.textContent = p[lang].title;
+    const e = el('p'); e.textContent = p[lang].excerpt;
+    const meta = el('div','meta'); meta.textContent = `${p.date} • ${p.min} ${i18n[lang].minutes}`;
+
+    const btn = el('a','button read');
+    btn.textContent = i18n[lang].read;
+    btn.href = `#post/${p.id}`;
+    btn.addEventListener('click', (ev)=>{ ev.preventDefault(); openPost(p, lang); });
+
+    c.append(badgeRow,h,e,meta,btn);
+    grid.append(c);
+  });
+}
+
 
       function renderSeries(lang){
         const grid = qs('#seriesGrid'); grid.innerHTML = '';
