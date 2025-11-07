@@ -79,11 +79,11 @@
 
 <script>
 async function checkSession(){
-  // Se resposta 200 => logado, 401 => não logado
-  const r = await fetch('login.php', {method:'GET', credentials:'include'});
-  const ok = r.status === 200;
-  document.getElementById('loginBox').style.display = ok ? 'none':'block';
-  document.getElementById('panel').style.display    = ok ? 'block':'none';
+  const r = await fetch('login.php', { method: 'GET', credentials: 'include' });
+  const txt = (await r.text()).trim();
+  const ok = (r.status === 200 && txt === 'ok'); // <— checa texto
+  document.getElementById('loginBox').style.display = ok ? 'none' : 'block';
+  document.getElementById('panel').style.display    = ok ? 'block' : 'none';
   if (ok) loadPosts();
 }
 checkSession();
