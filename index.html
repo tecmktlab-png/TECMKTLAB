@@ -588,11 +588,6 @@ function closePost(){
   m.classList.remove('open');
   m.setAttribute('aria-hidden','true');
 
-  // limpa a bolinha do modal
-  const bubble = qs('#modalBubble');
-  bubble.removeAttribute('src');
-  bubble.style.display = 'none';
-
   if (location.hash.startsWith('#post/')) {
     history.replaceState(null, '', location.pathname + location.search);
   }
