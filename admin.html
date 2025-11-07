@@ -22,8 +22,14 @@
 <div class="wrap">
   <div class="bar">
     <h1 style="margin:0">Admin</h1>
-    <a class="badge" href="logout.php">Sair</a>
-  </div>
+    <form action="logout.php" method="post" style="display:inline">
+        <button type="submit"
+                class="badge"
+                style="cursor:pointer;border:none;background:#181828;color:#e8e8f0">
+          Sair
+        </button>
+      </form>
+    </div>
 
   <!-- Se não houver sessão, mostra login -->
   <div id="loginBox" style="display:none">
