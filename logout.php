@@ -1,4 +1,8 @@
 <?php
 session_start();
+$_SESSION = [];
 session_destroy();
-header('Location: admin.html');
+
+header('Cache-Control: no-store');
+header('Location: admin.html', true, 302);
+exit; // <- importante para não “vazar” nada e garantir o redirect
