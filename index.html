@@ -56,6 +56,24 @@
     grid-template-columns: 1fr;
     }
     .hero.single{ grid-template-columns: 1fr; }
+    /* bolinha de foto no canto superior direito do card Sobre */
+    .profile-bubble {
+      position: absolute;
+      top: 18px;
+      right: 18px;
+      width: 70px;
+      height: 70px;
+      border-radius: 50%;
+      object-fit: cover;
+      border: 2px solid var(--ring);
+      box-shadow: 0 0 10px rgba(134, 231, 255, 0.4);
+    }
+    
+    /* garante que o hero-card saiba posicionar filhos absolutos */
+    #aboutCard {
+      position: relative;
+      padding-top: 90px; /* espaço extra para não sobrepor o título */
+    }
     .muted{color:var(--muted)}
     .cta{display:flex; gap:12px; margin-top:16px}
     .button{padding:10px 14px; border-radius:12px; border:1px solid #2a2a3e; background:#181828; color:var(--text); cursor:pointer; font-weight:600}
@@ -137,6 +155,17 @@
     margin: 0 0 12px 0;
   }
 }
+@media (max-width: 640px){
+  .profile-bubble{
+    top: 14px;
+    right: 14px;
+    width: 56px;
+    height: 56px;
+  }
+  #aboutCard{
+    padding-top: 76px;
+  }
+}
 
 /* utilitário para “desgrudar” o conteúdo seguinte do float */
 .clear{ clear: both; }
@@ -196,6 +225,16 @@
       
       <section class="section" id="about">
 <div class="hero-card" id="aboutCard">
+        <img
+    src="minha-foto.jpg"
+    alt="Foto de Thomas"
+    class="profile-bubble"
+    width="140"
+    height="140"
+    loading="lazy"
+    decoding="async"
+  />
+
         <h2 id="aboutTitle">Sobre</h2>
         <p id="aboutBody" class="muted">Olá! Eu sou o Thomas — curioso por natureza e apaixonado por tudo que envolve criar, aprender e entender como as coisas funcionam.
 Estudo Análise e Desenvolvimento de Sistemas e Marketing Digital, porque acredito que o código e a comunicação são dois lados da mesma moeda: um faz o mundo girar, o outro faz o mundo prestar atenção.
