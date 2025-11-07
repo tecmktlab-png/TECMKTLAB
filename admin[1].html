@@ -1,0 +1,134 @@
+<!doctype html>
+<html lang="pt">
+<head>
+<meta charset="utf-8">
+<title>Admin • Code & Create</title>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<style>
+  :root{--bg:#0b0b0f; --card:#12121a; --muted:#a0a0b3; --text:#e8e8f0;}
+  *{box-sizing:border-box}
+  body{font-family:system-ui,-apple-system,Segoe UI,Roboto,Arial; background:var(--bg); color:var(--text); margin:0;}
+  .wrap{max-width:900px; margin:40px auto; padding:20px; background:#12121a; border:1px solid #222236; border-radius:14px}
+  input, textarea, select, button{width:100%; padding:10px; margin:8px 0; border-radius:10px; border:1px solid #2a2a3e; background:#181828; color:#e8e8f0}
+  .row{display:grid; grid-template-columns:1fr 1fr; gap:12px}
+  .actions{display:flex; gap:10px; justify-content:flex-end}
+  .badge{display:inline-block; padding:4px 8px; background:#181828; border:1px solid #2a2a3e; border-radius:999px; font-size:12px}
+  .muted{color:var(--muted)}
+  .bar{display:flex; justify-content:space-between; align-items:center; gap:12px; margin-bottom:10px}
+  a.badge{color:#e8e8f0; text-decoration:none}
+</style>
+</head>
+<body>
+<div class="wrap">
+  <div class="bar">
+    <h1 style="margin:0">Admin</h1>
+    <a class="badge" href="logout.php">Sair</a>
+  </div>
+
+  <!-- Se não houver sessão, mostra login -->
+  <div id="loginBox" style="display:none">
+    <form method="post" action="login.php">
+      <div class="row">
+        <div><input type="text" name="user" placeholder="Usuário" required></div>
+        <div><input type="password" name="pass" placeholder="Senha" required></div>
+      </div>
+      <div class="actions"><button type="submit">Entrar</button></div>
+    </form>
+  </div>
+
+  <!-- Área autenticada -->
+  <div id="panel" style="display:none">
+    <h2 style="margin-top:0">Novo post</h2>
+    <div class="row">
+      <div><input id="date" type="date" required></div>
+      <div><input id="minutes" type="number" min="1" placeholder="min de leitura" required></div>
+    </div>
+
+    <div class="row">
+      <div><input id="id" placeholder="id (slug, sem espaços) ex: ads-thinking-logic" required></div>
+      <div>
+        <select id="cat">
+          <option value="ads">ADS</option>
+          <option value="mkt">Marketing</option>
+          <option value="career">Career</option>
+        </select>
+      </div>
+    </div>
+
+    <input id="tags" placeholder="tags separadas por vírgula (ex: ADS, Lógica, Algoritmos)">
+
+    <h3>Português</h3>
+    <input id="pt_title" placeholder="Título (PT)" required>
+    <textarea id="pt_excerpt" rows="2" placeholder="Resumo (PT)" required></textarea>
+    <textarea id="pt_content" rows="8" placeholder="Conteúdo em Markdown (PT). Pode incluir ![alt](./imagem.jpg)"></textarea>
+
+    <h3>English</h3>
+    <input id="en_title" placeholder="Title (EN)" required>
+    <textarea id="en_excerpt" rows="2" placeholder="Excerpt (EN)" required></textarea>
+    <textarea id="en_content" rows="8" placeholder="Content in Markdown (EN)"></textarea>
+
+    <div class="actions">
+      <button id="saveBtn">Publicar</button>
+    </div>
+
+    <hr>
+    <h2>Posts existentes</h2>
+    <div id="list" class="muted">Carregando…</div>
+  </div>
+</div>
+
+<script>
+async function checkSession(){
+  // Se resposta 200 => logado, 401 => não logado
+  const r = await fetch('login.php', {method:'GET', credentials:'include'});
+  const ok = r.status === 200;
+  document.getElementById('loginBox').style.display = ok ? 'none':'block';
+  document.getElementById('panel').style.display    = ok ? 'block':'none';
+  if (ok) loadPosts();
+}
+checkSession();
+
+async function loadPosts(){
+  const r = await fetch('posts.json?ts=' + Date.now(), {cache:'no-store'});
+  const arr = await r.json();
+  const list = document.getElementById('list');
+  if(!arr.length){ list.textContent = 'Sem posts ainda.'; return; }
+  list.innerHTML = arr.map(p => (
+    `<div class="badge">\${p.date}</div> • <strong>\${p.id}</strong> • \${p.pt?.title||''}`
+  )).join('<br>');
+}
+
+document.getElementById('saveBtn')?.addEventListener('click', async ()=>{
+  const payload = {
+    id: document.getElementById('id').value.trim(),
+    date: document.getElementById('date').value,
+    min: Number(document.getElementById('minutes').value||0),
+    tags: document.getElementById('tags').value.split(',').map(s=>s.trim()).filter(Boolean),
+    cat: document.getElementById('cat').value,
+    pt: {
+      title: document.getElementById('pt_title').value.trim(),
+      excerpt: document.getElementById('pt_excerpt').value.trim(),
+      content: document.getElementById('pt_content').value
+    },
+    en: {
+      title: document.getElementById('en_title').value.trim(),
+      excerpt: document.getElementById('en_excerpt').value.trim(),
+      content: document.getElementById('en_content').value
+    }
+  };
+
+  if(!payload.id){ alert('Defina um id/slug'); return; }
+  if(!payload.date){ alert('Defina a data'); return; }
+
+  const r = await fetch('save_post.php', {
+    method:'POST',
+    headers:{'Content-Type':'application/json'},
+    credentials:'include',
+    body: JSON.stringify(payload)
+  });
+  if(r.ok){ alert('Publicado!'); loadPosts(); }
+  else { alert('Erro ao salvar'); }
+});
+</script>
+</body>
+</html>
